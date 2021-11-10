@@ -1,108 +1,68 @@
-import subprocess
-import time
-import smtplib 
-from email.message import EmailMessage
-from typing import Counter
+from  ping_server import PingServer as Ping
+from tracert_server import  TracertServer as Tracert
+from pathping_server import PathPingServer as Pathping
+from sendemail_server import SendEmail as Sendemail
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
+from kivy.uix.checkbox import CheckBox
 
-class Tester_Mike():
-    def __init__(self, server, notificacion):
-        self.correo = 'mcardonaexcel@gmail.com'
-        self.passw = 'snnybjmknlknybtj'
-        self.notificacion = notificacion
-        self.server = server
-        self.port = 587
-        self.process = None
 
-    def ping_server(self):
+class Test_Pip(GridLayout):
 
-        response = subprocess.call(['ping', self.server])
-        if response == 0:
-            return True
-        else:
-            return False
+    def __init__(self, **kwargs):
+        super(Test_Pip, self).__init__(**kwargs)
+        self.cols = 2
+        self.add_widget(Label(text='IP Address'))
+        self.ipaddress = TextInput(multiline=False)
+        self.add_widget(self.ipaddress)
+        cehckbox1 = CheckBox()
+        self.add_widget(Label(text='Ping'))
+        self.add_widget(cehckbox1)
+        cehckbox2 = CheckBox()
+        self.add_widget(Label(text='Tracert'))
+        self.add_widget(cehckbox2)
+        cehckbox3 = CheckBox()
+        self.add_widget(Label(text='Pathping'))
+        self.add_widget(cehckbox3)
+
+
+    def test_pin_server(self):
+        ping_result = Ping(self.ipaddress.text)
+        ping_result.run_test_ping()
+        return ping_result
+
+
+
+class Tester_Mike(App):
     
-    def is_server_running(self):
-        try:
-            self.process = subprocess.check_output(['netstat', '-a'])
-            return True
-        except:
-            return False
+    def build(self):
+        return Test_Pip()
 
-    def send_email(self):
-        msg = EmailMessage()
-        mensaje = 'Notificacion de servidor'
-        msg['Subject']= mensaje
-        msg['From']= self.correo
-        msg['To']= self.notificacion
-        cuerpo_mensaje = '''
-        Hola,
-        El servidor {} esta caido.
-        '''.format(self.server)
-        msg.set_content(cuerpo_mensaje)
-        s = smtplib.SMTP(host='smtp.gmail.com', port=587)
-        s.ehlo()
-        s.starttls()
-        s.ehlo()
-        s.login(self.correo, self.passw)
-        s.sendmail(self.correo, self.notificacion, msg.as_string())
-        s.quit()
+if __name__ == '__main__':
+    Tester_Mike().run()
 
-    def start(self):
-        if self.ping_server():
-            if self.is_server_running():
-                print('''
-                ################################################
-                #                                              #
-                #   El servidor esta funcionando correctamente #
-                #                                              #
-                ################################################
-                ''')
-                print(time.ctime())
-        else:
-            print('''
-            ##################################################
-            #                                                #
-            #  El servidor no esta funcionando correctamente #
-            #                                                #
-            ##################################################
-            ''')
-            print(time.ctime())
-            self.send_email()
-   
+    # def __init__(self, server):
+    #     self.server = server
+    #     self.port = 587
+    #     self.process = None
 
-            print('''
-            ################################################
-            #                                              #
-            #   Se ha enviado un correo de notificacion    #
-            #                                              #
-            ################################################
-            ''')
+    # def test_pin_server(self):
+    #     ping_result = Ping(self.server)
+    #     ping_result.run_test_ping()
+    #     return ping_result
 
-print('''
-###############################################################################
-#                                                                             #
-#             Bienvenido al programa de prueba de servidores                  #
-#                               Por Mike Cardona                              #
-#                               Version: 1.0                                  #
-#                                 10/20/2021                                  #
-#                                                                             #
-###############################################################################
-''')
+    # def test_tracert_server(self):
+    #     tracert_result = Tracert(self.server)
+    #     tracert_result.run_test_tracert()
+    #     return tracert_result
 
-servidor = input('Ingrese la Ip publica del servidor: ')
-try: 
-    notificacion = input('Ingrese el correo electronico para enviar notificacion: ')
-    
+    # def test_pathping_server(self):
+    #     pathping_result = Pathping(self.server)
+    #     pathping_result.run_test_pathping()
+    #     return pathping_result
+        
 
-except:
-    print('Error')
-
-server = Tester_Mike(servidor, notificacion)
-server.start()
-tester_mike = Tester_Mike(servidor, notificacion)
-
-while True:
-    tester_mike.start()
-    time.sleep(5)
-    print('\n')
 
