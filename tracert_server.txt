@@ -1,0 +1,8 @@
+
+Tracing route to PC-MEDIEHP-2-83.MEDIEXCELSAPI.NET [fe80::bc65:7636:b827:f9b6%9]
+over a maximum of 30 hops:
+
+  1    <1 ms    <1 ms    <1 ms  PC-MEDIEHP-2-83.MEDIEXCELSAPI.NET [fe80::bc65:7636:b827:f9b6] 
+
+Trace complete.
+

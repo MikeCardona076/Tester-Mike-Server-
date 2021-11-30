@@ -1,0 +1,15 @@
+
+Tracing route to PC-MEDIEHP-2-83.MEDIEXCELSAPI.NET [172.16.2.83]
+over a maximum of 30 hops:
+  0  PC-MEDIEHP-2-83.MEDIEXCELSAPI.NET [172.16.2.83] 
+  1  PC-MEDIEHP-2-83.MEDIEXCELSAPI.NET [172.16.2.83] 
+
+Computing statistics for 25 seconds...
+            Source to Here   This Node/Link
+Hop  RTT    Lost/Sent = Pct  Lost/Sent = Pct  Address
+  0                                           PC-MEDIEHP-2-83.MEDIEXCELSAPI.NET [172.16.2.83] 
+                                0/ 100 =  0%   |
+  1    0ms     0/ 100 =  0%     0/ 100 =  0%  PC-MEDIEHP-2-83.MEDIEXCELSAPI.NET [172.16.2.83] 
+
+Trace complete.
+

@@ -1,12 +1,10 @@
 
-Pinging 66.70.179.124 with 32 bytes of data:
-Reply from 66.70.179.124: bytes=32 time=75ms TTL=118
-Reply from 66.70.179.124: bytes=32 time=74ms TTL=118
-Reply from 66.70.179.124: bytes=32 time=74ms TTL=118
-Reply from 66.70.179.124: bytes=32 time=74ms TTL=118
+Pinging 172.36.0.54 with 32 bytes of data:
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
 
-Ping statistics for 66.70.179.124:
-    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
-Approximate round trip times in milli-seconds:
-    Minimum = 74ms, Maximum = 75ms, Average = 74ms
+Ping statistics for 172.36.0.54:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
 
